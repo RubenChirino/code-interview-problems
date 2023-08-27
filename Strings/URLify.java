@@ -30,16 +30,16 @@ public static void main(String[] args) {
 // Transforming the input
 // Time Complexity: O(n) & Space Complexity: O(1)
 Class Solution {
-    public static void urlify(char[] toBeTransformed, int trueLength) {
-        int j = toBeTransformed.length - 1;
+    public static void urlify(char[] input, int trueLength) {
+        int j = input.length - 1;
 
         for (int i = currLength - 1; i >= 0 && i < j; --i) {
-            if (toBeTransformed[i] == ' ') {
-                toBeTransformed[j--] = '0';
-                toBeTransformed[j--] = '2';
-                toBeTransformed[j--] = '%';
+            if (input[i] == ' ') {
+                input[j--] = '0';
+                input[j--] = '2';
+                input[j--] = '%';
             } else {
-                toBeTransformed[j--] = toBeTransformed[i];
+                input[j--] = input[i];
             }
         }
     }
