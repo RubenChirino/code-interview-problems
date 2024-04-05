@@ -21,7 +21,7 @@ export default class Tree {
                 curr = curr.left;
             }
             curr = stack.pop()!;
-            res.push(curr.val);
+            res.push(curr.value);
             curr = curr.right;
         }
     
@@ -36,7 +36,7 @@ export default class Tree {
     
         while (curr !== null) {
             if (curr.left === null) {
-                res.push(curr.val);
+                res.push(curr.value);
                 curr = curr.right; // move to next right node
             } else { // has a left subtree
                 pre = curr.left;
@@ -48,7 +48,7 @@ export default class Tree {
                     curr = curr.left; // move curr to the top of the new tree
                 } else {
                     pre.right = null; // restore the tree
-                    res.push(curr.val);
+                    res.push(curr.value);
                     curr = curr.right; // move to next right node
                 }
             }
@@ -69,6 +69,25 @@ export default class Tree {
             traversal(node.right, index);
         }
         traversal(this.root, index);
+    }
+
+    getLeaves(root: TreeNode): String {
+        const sb = [];
+
+        function dfs(node: TreeNode | null, sb: String[]) {
+            if (node != null) {
+                if (node.left == null && node.right == null) {
+                    sb.push(node.value);
+                    sb.push(',')
+                }
+                dfs(node.left, sb);
+                dfs(node.right, sb);
+            }
+        }
+
+        dfs(root, sb);
+
+        return sb.join();
     }
 
     inOrderTraversalDesc(callback: (node: TreeNode, index: number) => void) {
